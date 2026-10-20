@@ -1,0 +1,26 @@
+{
+  "upstream": "https://github.com/vercel-labs/workflow-builder-template",
+  "fork": "https://github.com/adamgohch/workflow-builder-template",
+  "branch": "codex/zorel-workflows",
+  "upstreamCommit": "24fb0fd4524ee10491ea6b73f6df94137ecbf9e1",
+  "license": "Apache-2.0",
+  "copiedComponents": [
+    "components/ai-elements/canvas.tsx",
+    "components/ai-elements/node.tsx",
+    "components/ai-elements/controls.tsx",
+    "components/ui/card.tsx",
+    "components/ui/button.tsx",
+    "components/ui/button-group.tsx",
+    "components/ui/separator.tsx",
+    "components/ui/animated-border.tsx",
+    "components/workflow/nodes/trigger-node.tsx",
+    "lib/utils.ts"
+  ],
+  "adaptations": {
+    "components/ui/animated-border.tsx": "Use a plain style element outside Next.js.",
+    "components/workflow/nodes/action-node.tsx": "Retain upstream card composition and status treatment; replace external plugin, model and integration stores with Zorel step metadata.",
+    "lib/workflow-store.ts": "Host-neutral node data and minimap atom.",
+    "app.tsx": "Zorel workflow selection, step inspection and persisted test history around actual upstream components."
+  },
+  "execution": "Zorel owns persistence and its existing deterministic test runner. This bundle never calls a model or donor cloud backend."
+}
