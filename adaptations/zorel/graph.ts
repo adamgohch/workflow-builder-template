@@ -73,6 +73,15 @@ export function workflowGraph(
       const taken = outcome
         ? outcome === port
         : run?.steps[step.id]?.status === "completed";
+      const sharedPath = edges.find(
+        (edge) => edge.source === step.id && edge.target === target,
+      );
+      if (sharedPath) {
+        sharedPath.label = `${sharedPath.label} / ${port}`;
+        if (taken)
+          sharedPath.style = { stroke: "#087766", strokeWidth: 3, opacity: 1 };
+        continue;
+      }
       edges.push({
         id: `${step.id}:${port}:${target}`,
         source: step.id,

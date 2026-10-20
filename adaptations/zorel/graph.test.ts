@@ -47,6 +47,27 @@ test("preserves all three decision outcomes, return edges and disconnected steps
   assert.equal(graph.nodes.find((n) => n.id === "review")?.selected, true);
   assert.deepEqual(definition, before);
 });
+test("shared branch destinations show every outcome instead of overlapping labels", () => {
+  const definition: Definition = {
+    startStepId: "decide",
+    methodGuidance: "Reusable",
+    steps: [
+      {
+        ...step("decide", "Decide a path"),
+        branches: { yes: "finish", no: "review", unresolved: "review" },
+      },
+      step("review", "Human review", "finish"),
+      step("finish", "Finish"),
+    ],
+  };
+  const graph = workflowGraph(definition, null, "decide");
+  assert.equal(
+    graph.edges.find(
+      (edge) => edge.source === "decide" && edge.target === "review",
+    )?.label,
+    "no / unresolved",
+  );
+});
 test("run snapshots retain their own graph after the saved draft changes", () => {
   const old: Definition = {
     startStepId: "old",
