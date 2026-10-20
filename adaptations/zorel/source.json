@@ -17,6 +17,9 @@
     "lib/utils.ts"
   ],
   "adaptations": {
+    "components/workflow/step-icon.tsx": "Shared Lucide symbols for Zorel step types, with consistent 30px size and 1.5px stroke.",
+    "components/workflow/nodes/trigger-node.tsx": "Retain the upstream trigger card; use Zorel's shared step icon treatment.",
+    "components/ai-elements/controls.tsx": "Retain upstream control behavior; use consistent line weights and panel symbols for the minimap.",
     "components/ui/animated-border.tsx": "Use a plain style element outside Next.js.",
     "components/workflow/nodes/action-node.tsx": "Retain upstream card composition and status treatment; replace external plugin, model and integration stores with Zorel step metadata.",
     "lib/workflow-store.ts": "Host-neutral node data and minimap atom.",

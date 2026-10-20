@@ -1,7 +1,7 @@
 "use client";
 
 import type { NodeProps } from "@xyflow/react";
-import { Check, Clock, Play, Webhook, XCircle } from "lucide-react";
+import { Check, XCircle } from "lucide-react";
 import { memo } from "react";
 import {
   Node,
@@ -10,6 +10,7 @@ import {
 } from "@/components/ai-elements/node";
 import { cn } from "@/lib/utils";
 import type { WorkflowNodeData } from "@/lib/workflow-store";
+import { StepIcon } from "../step-icon";
 
 type TriggerNodeProps = NodeProps & {
   data?: WorkflowNodeData;
@@ -24,14 +25,6 @@ export const TriggerNode = memo(({ data, selected }: TriggerNodeProps) => {
   const displayTitle = data.label || triggerType;
   const displayDescription = data.description || "Trigger";
   const status = data.status;
-
-  // Select icon based on trigger type
-  let TriggerIcon = Play;
-  if (triggerType === "Schedule") {
-    TriggerIcon = Clock;
-  } else if (triggerType === "Webhook") {
-    TriggerIcon = Webhook;
-  }
 
   return (
     <Node
@@ -61,7 +54,13 @@ export const TriggerNode = memo(({ data, selected }: TriggerNodeProps) => {
       )}
 
       <div className="flex flex-col items-center justify-center gap-3 p-6">
-        <TriggerIcon className="size-12 text-blue-500" strokeWidth={1.5} />
+        <StepIcon
+          kind={
+            triggerType === "Manual"
+              ? (data.config?.actionType ?? "Collect inputs")
+              : triggerType
+          }
+        />
         <div className="flex flex-col items-center gap-1 text-center">
           <NodeTitle className="text-base">{displayTitle}</NodeTitle>
           {displayDescription && (

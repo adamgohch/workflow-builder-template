@@ -3,9 +3,9 @@
 import { useReactFlow } from "@xyflow/react";
 import { useAtom } from "jotai";
 import {
-  MapPin,
-  MapPinXInside,
-  Maximize2,
+  Maximize,
+  PanelBottomClose,
+  PanelBottomOpen,
   ZoomIn,
   ZoomOut,
 } from "lucide-react";
@@ -42,7 +42,7 @@ export const Controls = () => {
         title="Zoom in"
         variant="secondary"
       >
-        <ZoomIn className="size-4" />
+        <ZoomIn className="size-4" strokeWidth={1.5} />
       </Button>
       <Button
         className="border hover:bg-black/5 disabled:opacity-100 dark:hover:bg-white/5 disabled:[&>svg]:text-muted-foreground"
@@ -51,7 +51,7 @@ export const Controls = () => {
         title="Zoom out"
         variant="secondary"
       >
-        <ZoomOut className="size-4" />
+        <ZoomOut className="size-4" strokeWidth={1.5} />
       </Button>
       <Button
         className="border hover:bg-black/5 disabled:opacity-100 dark:hover:bg-white/5 disabled:[&>svg]:text-muted-foreground"
@@ -60,19 +60,20 @@ export const Controls = () => {
         title="Fit view"
         variant="secondary"
       >
-        <Maximize2 className="size-4" />
+        <Maximize className="size-4" strokeWidth={1.5} />
       </Button>
       <Button
         className="border hover:bg-black/5 disabled:opacity-100 dark:hover:bg-white/5 disabled:[&>svg]:text-muted-foreground"
         onClick={handleToggleMinimap}
         size="icon"
         title={showMinimap ? "Hide minimap" : "Show minimap"}
+        aria-pressed={showMinimap}
         variant="secondary"
       >
         {showMinimap ? (
-          <MapPin className="size-4" />
+          <PanelBottomClose className="size-4" strokeWidth={1.5} />
         ) : (
-          <MapPinXInside className="size-4" />
+          <PanelBottomOpen className="size-4" strokeWidth={1.5} />
         )}
       </Button>
     </ButtonGroup>

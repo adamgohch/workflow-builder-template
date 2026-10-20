@@ -238,6 +238,26 @@ footer a {
 .react-flow__handle {
   background: #6595a1;
 }
+.workflow-step-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border: 1px solid #dbe7ea;
+  border-radius: 12px;
+  background: #f1f6f7;
+  color: #245e6c;
+}
+.react-flow__node.selected .workflow-step-icon {
+  background: #e5f1f3;
+  border-color: #a0c6ce;
+  color: #07556a;
+}
+.react-flow__panel button {
+  color: #315e6a;
+}
 .react-flow__attribution {
   font-size: 9px;
 }
